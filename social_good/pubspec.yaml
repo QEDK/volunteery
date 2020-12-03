@@ -74,3 +74,15 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: airbnb
+      fonts:
+        - asset: assets/fonts/AirbnbCereal-Bold.ttf
+          weight: 800
+
+    - family: lexenddeca
+      fonts:
+        - asset: assets/fonts/LexendDeca-Regular.ttf
+
+  assets:
+    - assets/icons/
