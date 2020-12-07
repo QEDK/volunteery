@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "331235626002",
+    "project_id": "social-good-e7864",
+    "storage_bucket": "social-good-e7864.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331235626002:android:db9df78c80b10b9363dccb",
+        "android_client_info": {
+          "package_name": "com.example.social_good"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331235626002-buvn57qrpg5qslgg58bitv4ugq2idibr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.social_good",
+            "certificate_hash": "b6917d7b9e3447f04ea3c5d20b6b83df827c2c9f"
+          }
+        },
+        {
+          "client_id": "331235626002-tn4u4uaj8omvnk8t0gvj0hs2ful1219j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgel8MthVbrp6eSUitYcHXhF0o8syZmG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331235626002-tn4u4uaj8omvnk8t0gvj0hs2ful1219j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
