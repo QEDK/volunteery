@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:social_good/globals/myColors.dart';
 import 'package:social_good/globals/mySpaces.dart';
-import 'package:social_good/globals/myStrings.dart';
+import 'package:social_good/globals/myString.dart';
 
 class SplashScreen extends StatefulWidget {
-  static String id = "splash_page";
+  static String id = "splash_screen";
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Material(
-          color: MyColors.backgroundColor,
+          color: MyColors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: Theme.of(context)
                       .textTheme
                       .headline3
-                      .copyWith(color: MyColors.black, fontFamily: 'airbnb')),
+                      .copyWith(color: MyColors.accentColor, fontFamily: 'airbnb')),
             ],
           ),
         ),
