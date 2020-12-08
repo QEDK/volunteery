@@ -13,4 +13,5 @@ class MyColors {
 
   // shades of orange
   static const Color orangeLight = Color(0xFFF09B85);
+  static const Color orangeLighter = Color(0xFFFED8B1);
 }

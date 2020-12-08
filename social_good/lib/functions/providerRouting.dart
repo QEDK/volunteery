@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_good/pages/signinScreen.dart';
 import 'package:social_good/pages/splashScreen.dart';
+import 'package:social_good/pages/volunteer/volunteerForm.dart';
 import 'package:social_good/stores/loginStore.dart';
 import '../main.dart';
 
@@ -20,7 +21,7 @@ class ProviderRouting extends StatelessWidget {
             case Status.Authenticating:
               return SignInScreen();
             case Status.Authenticated:
-              return UserInfoPage(user: user.user);
+              return VolunteerForm(currentUser: user.user);
           }
         },
       ),
