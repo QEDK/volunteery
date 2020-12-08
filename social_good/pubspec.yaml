@@ -86,6 +86,21 @@ flutter:
         - asset: assets/fonts/AirbnbCereal-Bold.ttf
           weight: 800
 
+    - family: crimson
+      fonts:
+        - asset: assets/fonts/CrimsonText-Regular.ttf
+          weight: 500
+
+    - family: danceb
+      fonts:
+        - asset: assets/fonts/DancingScript-Bold.ttf
+          weight: 800
+
+    - family: dancer
+      fonts:
+        - asset: assets/fonts/DancingScript-Regular.ttf
+          weight: 500
+
     - family: lexen
       fonts:
         - asset: assets/fonts/LexendDeca-Regular.ttf

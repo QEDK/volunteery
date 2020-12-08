@@ -6,7 +6,6 @@ import 'package:social_good/pages/splashScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:social_good/pages/volunteer/temp.dart';
 import 'package:social_good/pages/volunteer/volunteerForm.dart';
 import 'package:social_good/stores/loginStore.dart';
 import 'globals/myColors.dart';

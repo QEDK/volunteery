@@ -29,8 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Text(MyStrings.appName,
                   style: Theme.of(context)
                       .textTheme
-                      .headline3
-                      .copyWith(color: MyColors.accentColor, fontFamily: 'airbnb')),
+                      .headline2
+                      .copyWith(color: MyColors.accentColor, fontFamily: 'danceb')),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyStrings {
-  static const appName = "Social Good";
+  static const appName = "Voluntry";
   static const time = "Time";
   static const date = "Date";
   static const snackBarMessage = "Aw, Snap! Please try logging in again!";
