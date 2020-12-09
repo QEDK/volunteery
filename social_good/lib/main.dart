@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:social_good/pages/volunteer/volunteerForm.dart';
+import 'package:social_good/pages/volunteer/volunteerHomeScreen.dart';
 import 'package:social_good/stores/loginStore.dart';
 import 'globals/myColors.dart';
 
@@ -57,49 +58,19 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Social Good',
+        theme: ThemeData.light(),
         debugShowCheckedModeBanner: false,
-        home: ProviderRouting(),
+        home: VolunteerHomeScreen(),
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           SignInScreen.id: (context) => SignInScreen(),
           VolunteerForm.id: (context) => VolunteerForm(),
-          UserInfoPage.id: (context) => UserInfoPage(),
+          VolunteerHomeScreen.id: (context) => VolunteerHomeScreen(),
         },
       ),
     );
   }
 }
 
-// TODO: Remove this stuff after making the volunteer home page
-class UserInfoPage extends StatelessWidget {
-  static String id = "user_info";
-  final User user;
-
-  const UserInfoPage({Key key, this.user}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("User Info"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(user.email),
-            Text(user.displayName),
-            Text(user.uid),
-            RaisedButton(
-              child: Text("Sign Out"),
-              onPressed: () {
-                Provider.of<LoginStore>(context,listen: false).signOut();
-                Navigator.pop(context);
-              }
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
+// TODO: Remove this UserInfoPage after making the volunteer home page -- done
 
