@@ -7,6 +7,7 @@ import 'package:social_good/globals/myDimens.dart';
 import 'package:social_good/globals/mySpaces.dart';
 import 'package:social_good/globals/myString.dart';
 import 'package:social_good/main.dart';
+import 'package:social_good/pages/volunteer/volunteerHomeScreen.dart';
 
 List<Color> _textColor = [
   MyColors.primaryColor,
@@ -77,7 +78,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
   // Supporting Widgets for this class only.
 
   // TODO: Create a cutsom stylish button to show selected option -- done
-  Widget _customButton(String text, double tSize, int index, double padding) {
+  Widget _customButton(String text, int index, double padding) {
     return Expanded(
       child: RaisedButton(
         padding: EdgeInsets.all(padding),
@@ -166,7 +167,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
                 color: (selectedDate == null)
                     ? MyColors.primaryColor
                     : MyColors.white,
-                size: 20),
+                size: MyDimens.double_20),
           ],
         ),
       ),
@@ -237,12 +238,12 @@ class _VolunteerFormState extends State<VolunteerForm> {
 
   Widget _buildName(TextStyle t1, TextStyle t2) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.symmetric(vertical: 2 * MyDimens.double_2point5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: MyDimens.double_10),
             child: Text('Your full name', style: t1),
           ),
           TextFormField(
@@ -261,12 +262,12 @@ class _VolunteerFormState extends State<VolunteerForm> {
 
   Widget _buildPhone(TextStyle t1, TextStyle t2) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.symmetric(vertical: 2 * MyDimens.double_2point5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: MyDimens.double_10),
             child: Text('Mobile number', style: t1),
           ),
           TextFormField(
@@ -286,25 +287,27 @@ class _VolunteerFormState extends State<VolunteerForm> {
 
   Widget _buildGender(TextStyle t1) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.symmetric(vertical: 2 * MyDimens.double_2point5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: MyDimens.double_10),
             child: Text('Gender', style: t1),
           ),
           Row(
             children: [
-              _customButton('Male', 18, 0, 20),
+              _customButton('Male', 0, 20),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 2 * MyDimens.double_2point5),
               ),
-              _customButton('Female', 18, 1, 20),
+              _customButton('Female', 1, 20),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 2 * MyDimens.double_2point5),
               ),
-              _customButton('Other', 18, 2, 20),
+              _customButton('Other', 2, 20),
             ],
           )
         ],
@@ -366,71 +369,86 @@ class _VolunteerFormState extends State<VolunteerForm> {
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Material(
-          color: MyColors.white,
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: MyDimens.double_15),
-            color: MyColors.white,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  MySpaces.vLargeGapInBetween,
-                  Text(
-                    MyStrings.setUp,
-                    style: Theme.of(context).textTheme.headline3.copyWith(
-                        color: MyColors.accentColor, fontFamily: 'airbnb'),
+          child: Stack(
+            children: [
+              Positioned(
+                top: MyDimens.double_negative_300,
+                left: MyDimens.double_negative_125,
+                child: Container(
+                  height: MyDimens.double_600,
+                  width: MyDimens.double_600,
+                  decoration: BoxDecoration(
+                    color: MyColors.yellowPrimary,
+                    borderRadius: BorderRadius.circular(MyDimens.double_600),
                   ),
-                  _buildAvatar(),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        _buildName(textStyle1, textStyle2),
-                        _buildPhone(textStyle1, textStyle2),
-                        _buildGender(textStyle1),
-                        _buildDOB(context, textStyle1),
-                        _buildAddress(textStyle1, textStyle2),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: MyDimens.double_25),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: RaisedButton(
-                            key: Key(MyStrings.submit),
-                            color: MyColors.primaryColor,
-                            padding: EdgeInsets.all(MyDimens.double_15),
-                            onPressed: () {
-                              _onPressedAddVolunteerDetails();
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) =>
-                                      UserInfoPage(user: currentUser)));
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(
-                                    MyDimens.double_25)),
-                            child: Text(
-                              MyStrings.submit,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(
-                                      color: MyColors.white,
-                                      fontFamily: 'lexen'),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // TODO: Ensure keyboard spacing consistent -- done
-                  for (int i = 0; i < 7; i++) MySpaces.vLargeGapInBetween,
-                ],
+                ),
               ),
-            ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: MyDimens.double_15),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      MySpaces.vLargeGapInBetween,
+                      Text(
+                        MyStrings.setUp,
+                        style: Theme.of(context).textTheme.headline3.copyWith(
+                            color: MyColors.accentColor, fontFamily: 'airbnb'),
+                      ),
+                      _buildAvatar(),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            _buildName(textStyle1, textStyle2),
+                            _buildPhone(textStyle1, textStyle2),
+                            _buildGender(textStyle1),
+                            _buildDOB(context, textStyle1),
+                            _buildAddress(textStyle1, textStyle2),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: MyDimens.double_25),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: RaisedButton(
+                                key: Key(MyStrings.submit),
+                                color: MyColors.primaryColor,
+                                padding: EdgeInsets.all(MyDimens.double_15),
+                                onPressed: () {
+                                  _onPressedAddVolunteerDetails();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => VolunteerHomeScreen(
+                                          currentUser: currentUser)));
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: new BorderRadius.circular(
+                                        MyDimens.double_25)),
+                                child: Text(
+                                  MyStrings.submit,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .copyWith(
+                                          color: MyColors.white,
+                                          fontFamily: 'lexen'),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // TODO: Ensure keyboard spacing consistent -- done
+                      for (int i = 0; i < 7; i++) MySpaces.vLargeGapInBetween,
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

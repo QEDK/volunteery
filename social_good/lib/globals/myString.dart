@@ -19,4 +19,7 @@ class MyStrings {
   static const female = "Female";
   static const other = "Other";
   static const larryPageUrl = "https://www.thefamouspeople.com/profiles/images/larry-page-2.jpg";
+
+  // volunteer home page
+  static const exhaust = "You have exhausted all events in your area!";
 }

@@ -1,13 +1,18 @@
 class MyDimens {
   //negative numbers
-  static const double double_negative_300 = -250;
+  static const double double_negative_400 = -400;
+  static const double double_negative_300 = -300;
   static const double double_negative_200 = -200;
+  static const double double_negative_150 = -150;
+  static const double double_negative_125 = -125;
+  static const double double_negative_100 = -100;
 
   //positive numbers
   static const double double_0point5 = 0.5;
   static const double double_1 = 1;
   static const double double_2point5 = 2.5;
   static const double double_4 = 4;
+  static const double double_5 = 5;
   static const double double_7 = 7;
   static const double double_10 = 10;
   static const double double_15 = 15;
