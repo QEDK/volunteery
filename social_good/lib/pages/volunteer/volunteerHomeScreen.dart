@@ -1,40 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:provider/provider.dart';
-// import 'package:social_good/stores/loginStore.dart';
-//
-// class VolunteerHomeScreen extends StatelessWidget {
-//   static String id = "volunteer_home_screen";
-//   final User currentUser;
-//
-//   const VolunteerHomeScreen({Key key, @required this.currentUser}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("User Info"),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text(currentUser.email),
-//             Text(currentUser.displayName),
-//             Text(currentUser.uid),
-//             RaisedButton(
-//                 child: Text("Sign Out"),
-//                 onPressed: () {
-//                   Provider.of<LoginStore>(context,listen: false).signOut();
-//                   Navigator.pop(context);
-//                 }
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_good/globals/myColors.dart';
@@ -44,6 +7,8 @@ import 'package:social_good/globals/myString.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:social_good/widgets/fabCircular.dart';
+
+import 'eventDesciption.dart';
 
 List<Color> _textColorDateTime = [MyColors.accentColor, MyColors.accentColor];
 List<Color> _bodyColorDateTime = [MyColors.yellowPrimary, MyColors.white];
@@ -137,14 +102,22 @@ class _VolunteerHomeScreenState extends State<VolunteerHomeScreen>
       body: SafeArea(
         child: Material(
           child: Container(
-            color: MyColors.backgroundColor,
+            color: MyColors.white,
             child: Column(
               children: [
-                MySpaces.vSmallestGapInBetween,
-                _switchDateTime(),
-                MySpaces.vSmallestGapInBetween,
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.86,
+                  height: MyDimens.double_30,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      MyColors.primaryColor,
+                      MyColors.yellowPrimary
+                    ]),
+                  ),
+                ),
+                // _switchDateTime(),
+                MySpaces.vSmallGapInBetween,
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.83,
                   child: Stack(
                     children: [
                       Center(
@@ -171,11 +144,16 @@ class _VolunteerHomeScreenState extends State<VolunteerHomeScreen>
                         minHeight: MediaQuery.of(context).size.height * 0.9,
                         cardBuilder: (context, index) => GestureDetector(
                           onLongPress: () {
-                            // TODO: Implement OnPressed
+                            // TODO: Implement Long Pressed -- done
                             print('LongPressed');
+                            Navigator.pushNamed(context, EventDescription.id);
                           },
                           child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: MyDimens.double_5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(MyDimens.double_10)),
                             child: Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -183,53 +161,64 @@ class _VolunteerHomeScreenState extends State<VolunteerHomeScreen>
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                              child: ColorFiltered(
-                                colorFilter: ColorFilter.mode(Colors.black38.withOpacity(0.4), BlendMode.screen),
-                                child: Container(
-                                  padding:
-                                      EdgeInsets.only(left: MyDimens.double_7),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        '${cardTitles[index]}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5
-                                            .copyWith(
-                                                color: MyColors.white,
-                                                fontFamily: 'airbnb'),
-                                      ),
-                                      Text(
-                                        '${cardDates[index]}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle1
-                                            .copyWith(
-                                                color: MyColors.white,
-                                                fontFamily: 'lexen'),
-                                      ),
-                                      Text(
-                                        '${cardLocations[index]}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline6
-                                            .copyWith(
-                                                color: MyColors.white,
-                                                fontFamily: 'airbnb'),
-                                      ),
-                                      Text(
-                                        '${cardOrganisations[index]}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle1
-                                            .copyWith(
-                                                color: MyColors.white,
-                                                fontFamily: 'airbnb'),
-                                      ),
-                                      MySpaces.vLargeGapInBetween,
-                                    ],
+                              child: GestureDetector(
+                                onTap: () {
+                                  // TODO: Implement Desc Tap -- done
+                                  print('Tap on description');
+                                  Navigator.pushNamed(
+                                      context, EventDescription.id);
+                                },
+                                child: ColorFiltered(
+                                  colorFilter: ColorFilter.mode(
+                                      Colors.black38.withOpacity(0.4),
+                                      BlendMode.screen),
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                        left: MyDimens.double_7),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          '${cardTitles[index]}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5
+                                              .copyWith(
+                                                  color: MyColors.white,
+                                                  fontFamily: 'airbnb'),
+                                        ),
+                                        Text(
+                                          '${cardDates[index]}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1
+                                              .copyWith(
+                                                  color: MyColors.white,
+                                                  fontFamily: 'lexen'),
+                                        ),
+                                        Text(
+                                          '${cardLocations[index]}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6
+                                              .copyWith(
+                                                  color: MyColors.white,
+                                                  fontFamily: 'airbnb'),
+                                        ),
+                                        Text(
+                                          '${cardOrganisations[index]}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle1
+                                              .copyWith(
+                                                  color: MyColors.white,
+                                                  fontFamily: 'airbnb'),
+                                        ),
+                                        MySpaces.vLargeGapInBetween,
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -243,7 +232,9 @@ class _VolunteerHomeScreenState extends State<VolunteerHomeScreen>
                           if (align.x < 0) {
                             // TODO: Implement LEFT SWIPE
                           } else if (align.x > 0) {
-                            // TODO: Implement RIGHT SWIPE
+                            // TODO: Implement RIGHT SWIPE & Ask Shambhavi about the swiping thing -- done
+                            // TODO: Should we implement here?
+                            // Navigator.pushNamed(context, EventDescription.id);
                           }
                         },
                         swipeCompleteCallback:
@@ -252,6 +243,8 @@ class _VolunteerHomeScreenState extends State<VolunteerHomeScreen>
                           // TODO: Implement Post SWIPE stuff
                           print(orientation.index);
                           print(index);
+                          if (orientation.index == 1)
+                            Navigator.pushNamed(context, EventDescription.id);
                         },
                       ),
                     ],

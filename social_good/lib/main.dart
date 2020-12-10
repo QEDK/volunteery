@@ -3,11 +3,13 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:social_good/functions/providerRouting.dart';
 import 'package:social_good/pages/signinScreen.dart';
 import 'package:social_good/pages/splashScreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:social_good/pages/volunteer/eventDesciption.dart';
+import 'package:social_good/pages/volunteer/interestedEvents.dart';
 import 'package:social_good/pages/volunteer/volunteerForm.dart';
 import 'package:social_good/pages/volunteer/volunteerHomeScreen.dart';
+import 'package:social_good/pages/volunteer/volunteerProfile.dart';
 import 'package:social_good/stores/loginStore.dart';
 import 'globals/myColors.dart';
 
@@ -57,15 +59,18 @@ class _MyAppState extends State<MyApp> {
         )
       ],
       child: MaterialApp(
-        title: 'Social Good',
+        title: 'Volunteery',
         theme: ThemeData.light(),
         debugShowCheckedModeBanner: false,
-        home: VolunteerHomeScreen(),
+        home: ProviderRouting(),
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           SignInScreen.id: (context) => SignInScreen(),
           VolunteerForm.id: (context) => VolunteerForm(),
           VolunteerHomeScreen.id: (context) => VolunteerHomeScreen(),
+          EventDescription.id: (context) => EventDescription(),
+          VolunteerProfile.id: (context) => VolunteerProfile(),
+          InterestedEvents.id: (context) => InterestedEvents(),
         },
       ),
     );
