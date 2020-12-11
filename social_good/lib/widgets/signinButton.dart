@@ -9,17 +9,19 @@ import 'package:social_good/stores/loginStore.dart';
 class SignInButton extends StatefulWidget {
   final Color color;
   final String label;
+  final String type;
 
-  SignInButton({@required this.color, this.label});
+  SignInButton({@required this.color, this.label, this.type});
 
   @override
-  _SignInButtonState createState() => _SignInButtonState(color,label);
+  _SignInButtonState createState() => _SignInButtonState(color,label,type);
 }
 
 class _SignInButtonState extends State<SignInButton> {
   Color color;
   String label;
-  _SignInButtonState(this.color,this.label);
+  String type;
+  _SignInButtonState(this.color,this.label, this.type);
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<LoginStore>(context);
@@ -28,7 +30,7 @@ class _SignInButtonState extends State<SignInButton> {
         Expanded(
           child: RaisedButton(
             onPressed: () async {
-              if (!await user.signInWithGoogle()) {
+              if (!await user.signInWithGoogle(type)) {
                 final snackBar = SnackBar(
                   content: Text(MyStrings.snackBarMessage),
                 );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:social_good/functions/providerRouting.dart';
+import 'package:social_good/pages/organisation/addEvent.dart';
+import 'package:social_good/pages/organisation/organisationEvents.dart';
+import 'package:social_good/pages/organisation/organisationForm.dart';
 import 'package:social_good/pages/signinScreen.dart';
 import 'package:social_good/pages/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -62,15 +65,18 @@ class _MyAppState extends State<MyApp> {
         title: 'Volunteery',
         theme: ThemeData.light(),
         debugShowCheckedModeBanner: false,
-        home: VolunteerHomeScreen(),
+        home: ProviderRouting(),
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           SignInScreen.id: (context) => SignInScreen(),
           VolunteerForm.id: (context) => VolunteerForm(),
+          OrganisationForm.id: (context) => OrganisationForm(),
           VolunteerHomeScreen.id: (context) => VolunteerHomeScreen(),
           EventDescription.id: (context) => EventDescription(),
           VolunteerProfile.id: (context) => VolunteerProfile(),
           InterestedEvents.id: (context) => InterestedEvents(),
+          AddEvent.id:(context) => AddEvent(),
+          OrganisationEvents.id:(context) => OrganisationEvents(),
         },
       ),
     );

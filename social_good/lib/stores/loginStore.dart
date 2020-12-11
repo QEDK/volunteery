@@ -3,12 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
+enum Type {Unknown, Volunteer, Organisation}
 
 class LoginStore with ChangeNotifier {
   FirebaseAuth _auth;
   User _user;
   GoogleSignIn _googleSignIn;
   Status _status = Status.Uninitialized;
+  Type _type = Type.Organisation;
 
   LoginStore.instance()
       : _auth = FirebaseAuth.instance,
@@ -19,10 +21,13 @@ class LoginStore with ChangeNotifier {
 
   Status get status => _status;
   User get user => _user;
+  Type get type => _type;
 
-  Future<bool> signInWithGoogle() async {
+  Future<bool> signInWithGoogle(String category) async {
     try {
       _status = Status.Authenticating;
+      if(category=="Organisation") _type=Type.Organisation;
+      else _type=Type.Volunteer;
       notifyListeners();
       final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth =

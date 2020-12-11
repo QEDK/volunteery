@@ -14,11 +14,10 @@ class MyStrings {
 
   // volunteer form page
   static const submit = "Submit";
-  static const setUp = "Let\'s get you set up!";
+  static const setUp = "Let's get you set up!";
   static const male = "Male";
   static const female = "Female";
   static const other = "Other";
-
   static const larryPageUrl =
       "https://www.thefamouspeople.com/profiles/images/larry-page-2.jpg";
 
@@ -26,9 +25,15 @@ class MyStrings {
   static const profile = "Your profile";
   static const update = "Update";
 
+  // volunteer home page
+  static const exhaust = "You have exhausted all events in your area!";
+
   // interested events page
   static const interested = "Interested";
   static const events = "Events";
+
+  // add events page
+  static const eventSetUp = "Let's create a new event!";
 
   // event description page
   // TODO: Remove all these strings after firestore data integration
@@ -37,8 +42,4 @@ class MyStrings {
   static const eventLocation = "Girgaon Chowpatty, Mumbai";
   static const eventOrganisation = "by Leo Multiple";
   static const eventInformation = "This event is going to be held in order for us to remind oursleves to keep our beaches clean not only after festivals like Ganpati but even in day to day life.";
-
-
-  // volunteer home page
-  static const exhaust = "You have exhausted all events in your area!";
 }

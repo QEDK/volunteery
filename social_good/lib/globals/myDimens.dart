@@ -32,4 +32,5 @@ class MyDimens {
   static const double double_400 = 400;
   static const double double_280 = 280;
   static const double double_600 = 600;
+  static const double double_1000 = 1000;
 }
