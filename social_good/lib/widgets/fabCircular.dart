@@ -14,12 +14,12 @@ import 'package:social_good/pages/volunteer/volunteerProfile.dart';
 import 'package:social_good/stores/loginStore.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class FabCircular extends StatefulWidget {
+class FabCircularVolunteer extends StatefulWidget {
   @override
-  _FabCircularState createState() => _FabCircularState();
+  _FabCircularVolunteerState createState() => _FabCircularVolunteerState();
 }
 
-class _FabCircularState extends State<FabCircular> {
+class _FabCircularVolunteerState extends State<FabCircularVolunteer> {
   final User currentUser = FirebaseAuth.instance.currentUser;
 
   @override

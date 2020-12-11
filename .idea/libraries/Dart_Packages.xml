@@ -100,6 +100,13 @@
             </list>
           </value>
         </entry>
+        <entry key="fab_circular_menu">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fab_circular_menu-1.0.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="fake_async">
           <value>
             <list>
@@ -445,6 +452,7 @@
       <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0-nullsafety.3/lib" />
       <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.1.5/lib" />
+      <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fab_circular_menu-1.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0-nullsafety.1/lib" />
       <root url="file://$PROJECT_DIR$/../snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.18.4+1/lib" />

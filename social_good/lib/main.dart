@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Volunteery',
         theme: ThemeData.light(),
         debugShowCheckedModeBanner: false,
-        home: ProviderRouting(),
+        home: VolunteerHomeScreen(),
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           SignInScreen.id: (context) => SignInScreen(),
