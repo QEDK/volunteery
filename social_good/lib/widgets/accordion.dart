@@ -1,71 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:social_good/globals/myColors.dart';
-
-List<String> images = [
-  'beach',
-  'blood',
-  'beach',
-  'tree',
-];
-
-List<String> headers = [
-  'Beach Cleanup Drive',
-  'Blood Donation Camp',
-  'Educate Girl Child',
-  'Plant a tree',
-];
-
-List<String> description = [
-  "Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean!",
-  "Donate blood and save a life today. Donate blood and save a life today. Donate blood and save a life today. Donate blood and save a life today.Donate blood and save a life today.Donate blood and save a life today.Donate blood and save a life today!",
-  "Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean.Let's keep our beaches clean!",
-  "Donate blood and save a life today. Donate blood and save a life today. Donate blood and save a life today. Donate blood and save a life today.Donate blood and save a life today.Donate blood and save a life today.Donate blood and save a life today!"
-];
-
-// stores ExpansionPanel state information
-class Item {
-  Item({
-    this.id,
-    this.expandedValue,
-    this.headerValue,
-    this.imageUrl,
-  });
-
-  int id;
-  String expandedValue;
-  String headerValue;
-  String imageUrl;
-}
-
-List<Item> generateItems(int numberOfItems) {
-  return List.generate(numberOfItems, (int index) {
-    String img = images[index];
-    String header = headers[index];
-    String desc = description[index];
-    return Item(
-      id: index,
-      headerValue: header,
-      expandedValue: '$desc',
-      imageUrl: 'assets/images/$img.jpg',
-    );
-  });
-}
+import 'package:social_good/globals/myDimens.dart';
+import 'package:social_good/pages/organisation/orgEventDesc.dart';
+import 'package:social_good/pages/organisation/organisationEvents.dart';
+import 'package:social_good/pages/volunteer/eventDesciption.dart';
 
 class MyAccordionWidget extends StatefulWidget {
-  MyAccordionWidget({Key key}) : super(key: key);
+  final List<Item> data;
+  final String type;
+
+  MyAccordionWidget({Key key, @required this.data, @required this.type}) : super(key: key);
 
   @override
-  _MyAccordionWidgetState createState() => _MyAccordionWidgetState();
+  _MyAccordionWidgetState createState() => _MyAccordionWidgetState(data, type);
 }
 
 class _MyAccordionWidgetState extends State<MyAccordionWidget> {
-  List<Item> _data = generateItems(4);
+  final List<Item> _data;
+  final String type;
+
+  _MyAccordionWidgetState(this._data, this.type);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.only(top: 180),
+        margin: EdgeInsets.only(top: 180, bottom: 100),
         child: _buildPanel(),
       ),
     );
@@ -74,7 +34,7 @@ class _MyAccordionWidgetState extends State<MyAccordionWidget> {
   Widget _buildPanel() {
     return ExpansionPanelList.radio(
       elevation: 0,
-      dividerColor: MyColors.accentColorLight,
+      dividerColor: MyColors.orangeLighter,
       animationDuration: Duration(milliseconds: 800),
       children: _data.map<ExpansionPanelRadio>((Item item) {
         return ExpansionPanelRadio(
@@ -83,22 +43,35 @@ class _MyAccordionWidgetState extends State<MyAccordionWidget> {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: ListTile(
-                leading: Image(
-                  image: AssetImage(item.imageUrl),
-                  fit: BoxFit.cover,
-                  height: 60,
-                  width: 60,
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(MyDimens.double_200),
+                  child: Image(
+                    image: AssetImage(item.imageUrl),
+                    width: MyDimens.double_60,
+                    height: MyDimens.double_60,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 title: Text(item.headerValue,
                     style: Theme.of(context).textTheme.headline6.copyWith(
-                        color: MyColors.primaryColor, fontFamily: 'airbnb')),
+                        color: MyColors.accentColor, fontFamily: 'airbnb')),
               ),
             );
           },
-          body: ListTile(
-            subtitle: Text(item.expandedValue,
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
-                    color: MyColors.accentColorLight, fontFamily: 'lexen')),
+          body: GestureDetector(
+            onTap: () {
+              if(type=="Organisation")
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => OrgEventDesc(eventUid: item.eventUid)));
+              else
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => EventDescription(eventUid: item.eventUid)));
+            },
+            child: ListTile(
+              subtitle: Text(item.expandedValue,
+                  style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: MyColors.accentColorLight, fontFamily: 'lexen')),
+            ),
           ),
         );
       }).toList(),

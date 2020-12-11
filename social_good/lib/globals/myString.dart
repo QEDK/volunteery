@@ -14,7 +14,7 @@ class MyStrings {
 
   // volunteer form page
   static const submit = "Submit";
-  static const setUp = "Let\'s get you set up!";
+  static const setUp = "Let's get you set up!";
   static const male = "Male";
   static const female = "Female";
   static const other = "Other";
@@ -31,6 +31,9 @@ class MyStrings {
   // interested events page
   static const interested = "Interested";
   static const events = "Events";
+
+  // add events page
+  static const eventSetUp = "Let's create a new event!";
 
   // event description page
   // TODO: Remove all these strings after firestore data integration
