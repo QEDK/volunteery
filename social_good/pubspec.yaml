@@ -32,7 +32,15 @@ dependencies:
   swipeable_card: ^1.0.2
   fab_circular_menu: ^1.0.1
   font_awesome_flutter: ^8.10.1
+  url_launcher: ^5.7.10
   flutter_tindercard: ^0.2.0
+  flutter_launcher_icons: ^0.8.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/hands.png"
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

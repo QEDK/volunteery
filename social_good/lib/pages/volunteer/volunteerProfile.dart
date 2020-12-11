@@ -27,23 +27,24 @@ String gender = '';
 String address = '';
 String phone = '';
 String dob =
-    (selectedDate != null) ? '${selectedDate.toLocal()}'.split(' ')[0] : '';
+(selectedDate != null) ? '${selectedDate.toLocal()}'.split(' ')[0] : '';
 
-class VolunteerForm extends StatefulWidget {
-  static String id = "volunteer_form";
+class VolunteerProfile extends StatefulWidget {
+  static String id = "volunteer_profile";
 
-  final User currentUser;
-
-  VolunteerForm({Key key, @required this.currentUser}) : super(key: key);
+  // Address, DOB, Gender, Mobile, Name
+  final List<String> volunteerInfo;
+  VolunteerProfile({Key key, @required this.volunteerInfo}) : super(key: key);
 
   @override
-  _VolunteerFormState createState() => _VolunteerFormState(currentUser);
+  _VolunteerProfileState createState() => _VolunteerProfileState(volunteerInfo);
 }
 
-class _VolunteerFormState extends State<VolunteerForm> {
-  final User currentUser;
+class _VolunteerProfileState extends State<VolunteerProfile> {
+  final List<String> volunteerInfo;
+  _VolunteerProfileState(this.volunteerInfo);
 
-  _VolunteerFormState(this.currentUser);
+  final User currentUser = FirebaseAuth.instance.currentUser;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -65,11 +66,11 @@ class _VolunteerFormState extends State<VolunteerForm> {
   void _onPressedAddVolunteerDetails() async {
     var user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance.collection('Volunteer').doc(user.uid).set({
-      'name': (name=='')?'AB Satyaprakash':name,
-      'mobile': (phone=='')?'+91 6370548663':phone,
-      'gender': (gender=='')?'Male':gender,
-      'dob': (dob=='')?'2000-10-02':dob,
-      'address': (address=='')?'IIT Guwahati':address,
+      'name': volunteerInfo[4],
+      'mobile': volunteerInfo[3],
+      'gender': volunteerInfo[2],
+      'dob': dob,
+      'address': volunteerInfo[0],
     }).then((_) {
       print('added volunteer details to FireStore');
     });
@@ -87,7 +88,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
             borderRadius: BorderRadius.circular(MyDimens.double_25)),
         child: _getText(text, _textColor[index]),
         onPressed: () {
-          gender = _category[index];
+          volunteerInfo[2] = _category[index];
           print(gender);
           setState(() {
             if (_bodyColor[index] == MyColors.white) {
@@ -152,16 +153,16 @@ class _VolunteerFormState extends State<VolunteerForm> {
           border: Border.all(color: MyColors.primaryColor),
           borderRadius: BorderRadius.circular(MyDimens.double_25),
           color:
-              (selectedDate == null) ? MyColors.white : MyColors.primaryColor,
+          (selectedDate == null) ? MyColors.white : MyColors.primaryColor,
         ),
         child: Row(
           children: [
             (selectedDate == null)
                 ? _getText('yyyy-mm-dd', MyColors.primaryColor)
                 : _getText(
-                    dateTimeConverter(
-                        '${selectedDate.toLocal()}'.split(' ')[0]),
-                    MyColors.white),
+                dateTimeConverter(
+                    '${selectedDate.toLocal()}'.split(' ')[0]),
+                MyColors.white),
             Spacer(),
             Icon(Icons.calendar_today,
                 color: (selectedDate == null)
@@ -196,19 +197,19 @@ class _VolunteerFormState extends State<VolunteerForm> {
                 borderRadius: BorderRadius.circular(MyDimens.double_100),
                 child: (currentUser.photoURL != null)
                     ? Image(
-                        image: NetworkImage(currentUser.photoURL
-                                .substring(0, currentUser.photoURL.length - 5) +
-                            's400-c'),
-                        width: MyDimens.double_200,
-                        height: MyDimens.double_200,
-                        fit: BoxFit.cover,
-                      )
+                  image: NetworkImage(currentUser.photoURL
+                      .substring(0, currentUser.photoURL.length - 5) +
+                      's400-c'),
+                  width: MyDimens.double_200,
+                  height: MyDimens.double_200,
+                  fit: BoxFit.cover,
+                )
                     : Image(
-                        image: NetworkImage(MyStrings.larryPageUrl),
-                        width: MyDimens.double_200,
-                        height: MyDimens.double_200,
-                        fit: BoxFit.cover,
-                      ),
+                  image: NetworkImage(MyStrings.larryPageUrl),
+                  width: MyDimens.double_200,
+                  height: MyDimens.double_200,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Positioned(
@@ -247,13 +248,14 @@ class _VolunteerFormState extends State<VolunteerForm> {
             child: Text('Your full name', style: t1),
           ),
           TextFormField(
+              initialValue: volunteerInfo[4],
               decoration: inputDecoration,
               cursorColor: MyColors.primaryColor,
               cursorRadius: Radius.circular(MyDimens.double_10),
               cursorWidth: MyDimens.double_1,
               style: t2,
               onChanged: (String value) {
-                name = value;
+                volunteerInfo[4] = value;
               }),
         ],
       ),
@@ -271,6 +273,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
             child: Text('Mobile number', style: t1),
           ),
           TextFormField(
+              initialValue: volunteerInfo[3],
               decoration: inputDecoration,
               cursorColor: MyColors.primaryColor,
               cursorRadius: Radius.circular(MyDimens.double_10),
@@ -278,7 +281,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
               style: t2,
               keyboardType: TextInputType.number,
               onChanged: (String value) {
-                phone = value;
+                volunteerInfo[3] = value;
               }),
         ],
       ),
@@ -342,13 +345,14 @@ class _VolunteerFormState extends State<VolunteerForm> {
             child: Text('Address', style: t1),
           ),
           TextFormField(
+              initialValue: volunteerInfo[0],
               decoration: inputDecoration,
               cursorColor: MyColors.primaryColor,
               cursorRadius: Radius.circular(MyDimens.double_10),
               cursorWidth: MyDimens.double_1,
               style: t2,
               onChanged: (String value) {
-                address = value;
+                volunteerInfo[0] = value;
               }),
         ],
       ),
@@ -391,10 +395,11 @@ class _VolunteerFormState extends State<VolunteerForm> {
                     children: <Widget>[
                       MySpaces.vLargeGapInBetween,
                       Text(
-                        MyStrings.setUp,
+                        MyStrings.profile,
                         style: Theme.of(context).textTheme.headline3.copyWith(
                             color: MyColors.accentColor, fontFamily: 'airbnb'),
                       ),
+                      MySpaces.vLargeGapInBetween,
                       _buildAvatar(),
                       Form(
                         key: _formKey,
@@ -411,7 +416,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(vertical: MyDimens.double_25),
+                        EdgeInsets.symmetric(vertical: MyDimens.double_25),
                         child: Row(
                           children: [
                             Expanded(
@@ -429,13 +434,13 @@ class _VolunteerFormState extends State<VolunteerForm> {
                                     borderRadius: new BorderRadius.circular(
                                         MyDimens.double_25)),
                                 child: Text(
-                                  MyStrings.submit,
+                                  MyStrings.update,
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline6
                                       .copyWith(
-                                          color: MyColors.white,
-                                          fontFamily: 'lexen'),
+                                      color: MyColors.white,
+                                      fontFamily: 'lexen'),
                                 ),
                               ),
                             ),

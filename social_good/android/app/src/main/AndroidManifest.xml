@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.social_good">
    <application
-        android:label="social_good"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Volunteery"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
