@@ -12,27 +12,6 @@ import 'package:social_good/pages/organisation/organisationEvents.dart';
 import 'package:social_good/widgets/accordion.dart';
 import 'package:social_good/widgets/fabCircularVolunteer.dart';
 
-// List<String> images = [
-//   'beach',
-//   'blood',
-//   'beach',
-//   'tree',
-// ];
-//
-// List<String> headers = [
-//   'Beach Cleanup Drive',
-//   'Blood Donation Camp',
-//   'Educate Girl Child',
-//   'Plant a tree',
-// ];
-//
-// List<String> descriptions = [
-//   "Cleaning the beach also improves the coastal and ocean ecosystem by making sure that none of the trash kills marine life or is toxic enough to disrupt the marine life cycle. A beach clean up is also an opportunity to gather fresh data about the state of our coasts and the types of trash that pollutes them.",
-//   "Blood is the most precious gift that anyone can give to another person — the gift of life. A decision to donate your blood can save a life, or even several if your blood is separated into its components — red cells, platelets and plasma — which can be used individually for patients with specific conditions.",
-//   "Girls have the right same right to education as boys. Educated girls can make informed choices - and from a far better range of options. Educating girls saves lives and builds stronger families, communities and economies. An educated female population increases a country's productivity and fuels economic growth.",
-//   "Trees contribute to their environment by providing oxygen, improving air quality, climate amelioration, conserving water, preserving soil, and supporting wildlife. During the process of photosynthesis, trees take in carbon dioxide and produce the oxygen we breathe."
-// ];
-
 List<Item> generateItems(int numberOfItems, List<String> images,
     List<String> headers, List<String> descriptions, List<String> eventUid) {
   return List.generate(numberOfItems, (int index) {
